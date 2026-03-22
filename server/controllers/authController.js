@@ -39,12 +39,6 @@ const register = async (req, res, next) => {
       verificationTokenExpiry,
     });
 
-    try {
-      await sendVerificationEmail(email, verificationToken);
-    } catch (emailErr) {
-      console.error('Failed to send verification email:', emailErr.message);
-    }
-
     const accessToken = generateAccessToken(user._id);
     const refreshToken = generateRefreshToken(user._id);
 
@@ -61,6 +55,10 @@ const register = async (req, res, next) => {
         verified: user.verified,
         avatar: user.avatar,
       },
+    });
+
+    sendVerificationEmail(email, verificationToken).catch((emailErr) => {
+      console.error('Failed to send verification email:', emailErr.message);
     });
   } catch (error) {
     next(error);
@@ -149,8 +147,11 @@ const sendVerification = async (req, res, next) => {
     user.verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000);
     await user.save();
 
-    await sendVerificationEmail(user.email, verificationToken);
     res.json({ success: true, message: 'Verification email sent' });
+
+    sendVerificationEmail(user.email, verificationToken).catch((emailErr) => {
+      console.error('Failed to send verification email:', emailErr.message);
+    });
   } catch (error) {
     next(error);
   }
@@ -196,13 +197,11 @@ const forgotPassword = async (req, res, next) => {
     user.resetPasswordExpiry = new Date(Date.now() + 60 * 60 * 1000);
     await user.save();
 
-    try {
-      await sendPasswordResetEmail(email, resetToken);
-    } catch (err) {
-      console.error('Failed to send password reset email:', err.message);
-    }
-
     res.json({ success: true, message: 'If that email exists, a reset link has been sent' });
+
+    sendPasswordResetEmail(email, resetToken).catch((err) => {
+      console.error('Failed to send password reset email:', err.message);
+    });
   } catch (error) {
     next(error);
   }
