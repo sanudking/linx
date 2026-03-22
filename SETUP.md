@@ -98,16 +98,70 @@ curl http://localhost:5000/api/health
 # Expected: {"success":true,"message":"Linx API running",...}
 ```
 
-## Production Build
+## Deploying to Netlify
+
+Netlify hosts the **frontend** (React/Vite). The backend must be deployed separately (e.g., [Railway](https://railway.app) or [Render](https://render.com)).
+
+### Step 1 — Deploy the backend first
+
+1. Create a free account at [Railway](https://railway.app) or [Render](https://render.com).
+2. Connect your GitHub repo and select the `server` directory as the root.
+3. Set all variables from `server/.env.example` in the platform's environment settings.
+4. Deploy. Note the public URL (e.g., `https://linx-api.railway.app`).
+
+### Step 2 — Deploy the frontend to Netlify
+
+The repo already contains a `netlify.toml` that configures the build automatically.
+
+**Option A — Netlify UI (recommended for beginners)**
+
+1. Go to [app.netlify.com](https://app.netlify.com) and click **Add new site → Import an existing project**.
+2. Connect your GitHub account and select the `sanudking/linx` repository.
+3. Netlify will auto-detect the settings from `netlify.toml`:
+   - **Base directory**: `client`
+   - **Build command**: `npm run build`
+   - **Publish directory**: `dist`
+4. Click **Show advanced** → **New variable** and add:
+
+   | Key | Value |
+   |-----|-------|
+   | `VITE_API_URL` | Your backend URL (e.g., `https://linx-api.railway.app`) |
+   | `VITE_SOCKET_URL` | Same backend URL |
+   | `VITE_DEMO_MODE` | `false` (remove this to use real API; keep `true` for a static demo) |
+
+5. Click **Deploy site**. Netlify will build and publish the site.
+
+**Option B — Netlify CLI**
 
 ```bash
-# Build client
-cd client && npm run build
+# Install the CLI
+npm install -g netlify-cli
 
-# Set NODE_ENV=production in server/.env
-# Start server (serves built client via static files if configured)
-cd server && npm start
+# Log in
+netlify login
+
+# From the repo root, initialize and deploy
+netlify init         # follow prompts; base dir = client, publish = dist
+netlify deploy --prod
 ```
+
+### Step 3 — Point the backend to your Netlify URL
+
+In your backend's environment variables, update:
+
+```
+CLIENT_URL=https://<your-site>.netlify.app
+```
+
+This fixes CORS so the browser can reach the API.
+
+### Step 4 — Verify
+
+Open your Netlify URL. You should see the Linx landing page. The Projects, Jobs, and Alumni pages will show live data from your backend.
+
+> **Tip:** If you don't have a backend yet, leave `VITE_DEMO_MODE=true` (the default in `netlify.toml`). The site will display realistic sample data so you can explore all pages without a running server.
+
+
 
 ## Troubleshooting
 
