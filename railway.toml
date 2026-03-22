@@ -1,0 +1,5 @@
+[build]
+buildCommand = "cd server && npm ci --omit=dev"
+
+[deploy]
+startCommand = "cd server && node index.js"
