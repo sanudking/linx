@@ -242,6 +242,49 @@ const googleAuth = async (req, res) => {
   res.json({ success: false, message: 'Google OAuth not configured' });
 };
 
+const DEMO_EMAIL = 'demo@linx.com';
+const DEMO_PASSWORD = 'Demo@1234';
+const DEMO_NAME = 'Demo User';
+
+// Demo login: creates a shared demo account on first use (no validation checks).
+// All demo users share this single account — any profile changes will be visible to everyone.
+const demoLogin = async (req, res, next) => {
+  try {
+    let user = await User.findOne({ email: DEMO_EMAIL });
+
+    if (!user) {
+      user = await User.create({
+        name: DEMO_NAME,
+        email: DEMO_EMAIL,
+        password: DEMO_PASSWORD,
+        role: 'student',
+        verified: true,
+      });
+    }
+
+    const accessToken = generateAccessToken(user._id);
+    const refreshToken = generateRefreshToken(user._id);
+
+    res.json({
+      success: true,
+      accessToken,
+      refreshToken,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+        verified: user.verified,
+        avatar: user.avatar,
+        skills: user.skills,
+        github: user.github,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   register,
   login,
@@ -252,4 +295,5 @@ module.exports = {
   forgotPassword,
   resetPassword,
   googleAuth,
+  demoLogin,
 };

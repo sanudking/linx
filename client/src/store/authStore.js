@@ -24,6 +24,19 @@ const useAuthStore = create(
         return data;
       },
 
+      demoLogin: async () => {
+        const data = await authAPI.demoLogin();
+        set({
+          user: data.user,
+          token: data.accessToken,
+          refreshToken: data.refreshToken,
+          isAuthenticated: true,
+        });
+        localStorage.setItem('token', data.accessToken);
+        toast.success(`Welcome, ${data.user.name}! (Demo account)`);
+        return data;
+      },
+
       register: async (userData) => {
         const data = await authAPI.register(userData);
         set({

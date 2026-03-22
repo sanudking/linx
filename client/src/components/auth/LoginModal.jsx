@@ -10,7 +10,7 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, register } = useAuth();
+  const { login, register, demoLogin } = useAuth();
 
   const handleChange = (e) => {
     setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -27,6 +27,19 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
       } else {
         await register(formData);
       }
+      onClose();
+    } catch (err) {
+      setError(err.message || 'Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDemoLogin = async () => {
+    setLoading(true);
+    setError('');
+    try {
+      await demoLogin();
       onClose();
     } catch (err) {
       setError(err.message || 'Something went wrong');
@@ -169,6 +182,22 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
               <span className="px-3 bg-gray-900 text-xs text-gray-500">or continue with</span>
             </div>
           </div>
+
+          <div className="mb-3 p-3 bg-white/5 border border-white/10 rounded-xl">
+            <p className="text-xs text-gray-400 mb-2 text-center font-medium">Demo credentials</p>
+            <p className="text-xs text-gray-500 text-center">
+              <span className="text-gray-300">demo@linx.com</span> / <span className="text-gray-300">Demo@1234</span>
+            </p>
+          </div>
+
+          <button
+            type="button"
+            onClick={handleDemoLogin}
+            disabled={loading}
+            className="w-full mb-3 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-primary-600/20 to-secondary-600/20 border border-primary-500/30 rounded-xl text-sm text-primary-300 hover:bg-primary-500/20 transition-all disabled:opacity-50"
+          >
+            Try Demo Account
+          </button>
 
           <button className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-sm text-gray-300 hover:bg-white/10 transition-all">
             <Github size={16} />
