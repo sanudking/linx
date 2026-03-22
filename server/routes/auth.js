@@ -10,11 +10,13 @@ const {
   forgotPassword,
   resetPassword,
   googleAuth,
+  demoLogin,
 } = require('../controllers/authController');
 const { protect } = require('../middleware/auth');
 
 router.post('/register', register);
 router.post('/login', login);
+router.post('/demo-login', demoLogin);
 router.post('/logout', protect, logout);
 router.post('/refresh-token', refreshToken);
 router.post('/send-verification', protect, sendVerification);
