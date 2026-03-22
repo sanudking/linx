@@ -4,6 +4,9 @@ import { Search, Users, Github, ExternalLink, MessageCircle, Filter } from 'luci
 import { userAPI } from '../services/api';
 import { getInitials, getSkillColor } from '../utils/helpers';
 import { ROLE_COLORS } from '../utils/constants';
+import { DEMO_USERS } from '../data/demoData';
+
+const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
 
 const AlumniCard = ({ user }) => {
   const roleClass = ROLE_COLORS[user.role] || ROLE_COLORS.student;
@@ -79,6 +82,21 @@ const Alumni = () => {
 
   const fetchUsers = async (params = {}) => {
     setLoading(true);
+    if (DEMO_MODE) {
+      let filtered = DEMO_USERS;
+      if (params.query) {
+        const q = params.query.toLowerCase();
+        filtered = filtered.filter(
+          (u) => u.name.toLowerCase().includes(q) || u.skills.some((s) => s.toLowerCase().includes(q))
+        );
+      }
+      if (params.role) {
+        filtered = filtered.filter((u) => u.role === params.role);
+      }
+      setUsers(filtered);
+      setLoading(false);
+      return;
+    }
     try {
       const data = await userAPI.searchUsers({ ...params, limit: 50 });
       setUsers(data.users || []);
