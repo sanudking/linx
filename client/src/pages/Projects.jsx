@@ -6,6 +6,9 @@ import { projectAPI } from '../services/api';
 import useAuth from '../hooks/useAuth';
 import ProjectCard from '../components/dashboard/ProjectCard';
 import Button from '../components/common/Button';
+import { DEMO_PROJECTS } from '../data/demoData';
+
+const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
 
 const SKILL_OPTIONS = ['JavaScript', 'TypeScript', 'Python', 'React', 'Node.js', 'Java', 'Go', 'Rust', 'Machine Learning', 'Data Science'];
 
@@ -129,6 +132,21 @@ const Projects = () => {
 
   const fetchProjects = async (params = {}) => {
     setLoading(true);
+    if (DEMO_MODE) {
+      let filtered = DEMO_PROJECTS;
+      if (params.search) {
+        const q = params.search.toLowerCase();
+        filtered = filtered.filter(
+          (p) => p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)
+        );
+      }
+      if (params.status) {
+        filtered = filtered.filter((p) => p.status === params.status);
+      }
+      setProjects(filtered);
+      setLoading(false);
+      return;
+    }
     try {
       const data = await projectAPI.getAll({ ...params, limit: 30 });
       setProjects(data.projects || []);

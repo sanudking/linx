@@ -6,6 +6,9 @@ import { jobAPI } from '../services/api';
 import useAuth from '../hooks/useAuth';
 import { getSkillColor, formatDate, formatSalary, truncateText } from '../utils/helpers';
 import Button from '../components/common/Button';
+import { DEMO_JOBS } from '../data/demoData';
+
+const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === 'true';
 
 const JOB_TYPES = ['full-time', 'part-time', 'internship', 'research'];
 
@@ -135,6 +138,11 @@ const Jobs = () => {
 
   useEffect(() => {
     const fetchJobs = async () => {
+      if (DEMO_MODE) {
+        setJobs(DEMO_JOBS);
+        setLoading(false);
+        return;
+      }
       try {
         const [allData, recData] = await Promise.all([
           jobAPI.getAll({ limit: 30 }),
