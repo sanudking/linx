@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import toast from 'react-hot-toast';
 import { authAPI } from '../services/api';
 
 const useAuthStore = create(
@@ -19,6 +20,7 @@ const useAuthStore = create(
           isAuthenticated: true,
         });
         localStorage.setItem('token', data.accessToken);
+        toast.success(`Welcome back, ${data.user.name}!`);
         return data;
       },
 
@@ -31,6 +33,7 @@ const useAuthStore = create(
           isAuthenticated: true,
         });
         localStorage.setItem('token', data.accessToken);
+        toast.success('Account created! Check your email for verification.');
         return data;
       },
 
@@ -42,6 +45,7 @@ const useAuthStore = create(
         }
         set({ user: null, token: null, refreshToken: null, isAuthenticated: false });
         localStorage.removeItem('token');
+        toast('Signed out successfully', { icon: '👋' });
       },
 
       updateProfile: (data) => {

@@ -31,7 +31,7 @@ export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
   logout: () => api.post('/auth/logout'),
-  me: () => api.get('/auth/me').catch(() => api.get('/users/profile/me')),
+  me: () => api.get('/auth/me'),
   refreshToken: (token) => api.post('/auth/refresh-token', { refreshToken: token }),
   sendVerification: () => api.post('/auth/send-verification'),
   verifyEmail: (token) => api.post(`/auth/verify-email/${token}`),

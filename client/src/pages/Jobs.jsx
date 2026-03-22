@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Briefcase, MapPin, Clock, DollarSign, X, Filter, Loader } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { jobAPI } from '../services/api';
 import useAuth from '../hooks/useAuth';
 import { getSkillColor, formatDate, formatSalary, truncateText } from '../utils/helpers';
@@ -16,6 +17,7 @@ const JobDetailModal = ({ job, onClose, onApply }) => {
     setApplying(true);
     try {
       await jobAPI.apply(job._id);
+      toast.success('Application submitted!');
       onApply?.(job._id);
       onClose();
     } catch {

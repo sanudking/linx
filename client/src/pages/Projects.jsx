@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Search, Filter, X, Github, Loader } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { projectAPI } from '../services/api';
 import useAuth from '../hooks/useAuth';
 import ProjectCard from '../components/dashboard/ProjectCard';
@@ -20,6 +21,7 @@ const CreateModal = ({ onClose, onCreate }) => {
     try {
       const tags = form.tags.split(',').map((t) => t.trim()).filter(Boolean);
       const data = await projectAPI.create({ ...form, tags });
+      toast.success('Project created!');
       onCreate(data.project);
       onClose();
     } catch (err) {
