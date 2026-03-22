@@ -1,0 +1,15 @@
+module.exports = {
+  CONNECTION: 'connection',
+  DISCONNECT: 'disconnect',
+  NEW_ACTIVITY: 'new-activity',
+  PULSE_UPDATE: 'pulse-update',
+  PROJECT_CREATED: 'project-created',
+  PROJECT_UPDATED: 'project-updated',
+  USER_ONLINE: 'user-online',
+  USER_OFFLINE: 'user-offline',
+  NOTIFICATION: 'notification',
+  JOIN_PROJECT: 'join-project',
+  LEAVE_PROJECT: 'leave-project',
+  PROJECT_MESSAGE: 'project-message',
+  PRESENCE_UPDATE: 'presence-update',
+};
