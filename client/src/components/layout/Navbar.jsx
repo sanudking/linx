@@ -36,7 +36,7 @@ const Navbar = ({ onLoginClick }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="Linx Logo" className="h-8 w-auto" />
+            <img src="/logo.png" alt="Linx Logo" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Links */}
