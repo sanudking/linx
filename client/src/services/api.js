@@ -17,13 +17,27 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    const data = response.data;
+    // Guard against non-JSON responses (e.g. HTML error pages from a CDN/proxy)
+    if (data === null || data === undefined || typeof data !== 'object') {
+      return Promise.reject({ message: 'Unexpected server response. Please try again.' });
+    }
+    return data;
+  },
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
       window.dispatchEvent(new Event('auth:logout'));
     }
-    return Promise.reject(error.response?.data || { message: 'Network error' });
+    const data = error.response?.data;
+    // Only propagate structured JSON errors that carry a message string.
+    // Fallback covers network failures, HTML error pages, and any other
+    // non-object response bodies so callers always get a usable .message.
+    if (data && typeof data === 'object' && typeof data.message === 'string') {
+      return Promise.reject(data);
+    }
+    return Promise.reject({ message: error.message || 'Network error' });
   }
 );
 

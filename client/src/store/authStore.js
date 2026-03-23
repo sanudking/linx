@@ -61,6 +61,13 @@ const useAuthStore = create(
         toast('Signed out successfully', { icon: '👋' });
       },
 
+      // Clears auth state immediately without making any API calls.
+      // Used by the auth:logout event handler to avoid re-triggering 401s.
+      clearAuth: () => {
+        set({ user: null, token: null, refreshToken: null, isAuthenticated: false });
+        localStorage.removeItem('token');
+      },
+
       updateProfile: (data) => {
         set((state) => ({
           user: state.user ? { ...state.user, ...data } : data,

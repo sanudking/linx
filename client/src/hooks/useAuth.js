@@ -10,8 +10,9 @@ const useAuth = () => {
   const logout = useAuthStore((s) => s.logout);
   const updateProfile = useAuthStore((s) => s.updateProfile);
   const initAuth = useAuthStore((s) => s.initAuth);
+  const clearAuth = useAuthStore((s) => s.clearAuth);
 
-  return { user, token, isAuthenticated, login, demoLogin, register, logout, updateProfile, initAuth };
+  return { user, token, isAuthenticated, login, demoLogin, register, logout, updateProfile, initAuth, clearAuth };
 };
 
 export default useAuth;

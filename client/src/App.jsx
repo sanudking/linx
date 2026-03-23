@@ -22,12 +22,15 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const App = () => {
-  const { initAuth, isAuthenticated } = useAuth();
+  const { initAuth, isAuthenticated, clearAuth } = useAuth();
   const [loginModal, setLoginModal] = useState({ open: false, mode: 'login' });
 
   useEffect(() => {
     initAuth();
-    const handleLogout = () => initAuth();
+    // When any API call returns 401, clear auth state immediately instead of
+    // re-calling initAuth() (which would attempt another API request with the
+    // stale store token, trigger another 401, and loop).
+    const handleLogout = () => clearAuth();
     window.addEventListener('auth:logout', handleLogout);
     return () => window.removeEventListener('auth:logout', handleLogout);
   }, []);
