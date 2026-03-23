@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, Lock, Eye, EyeOff, Github, AlertCircle } from 'lucide-react';
 import useAuth from '../../hooks/useAuth';
@@ -11,6 +12,7 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { login, register, demoLogin } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData((p) => ({ ...p, [e.target.name]: e.target.value }));
@@ -28,6 +30,7 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
         await register(formData);
       }
       onClose();
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {
@@ -41,6 +44,7 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
     try {
       await demoLogin();
       onClose();
+      navigate('/dashboard');
     } catch (err) {
       setError(err.message || 'Something went wrong');
     } finally {
