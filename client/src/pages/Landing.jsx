@@ -62,9 +62,9 @@ const steps = [
 ];
 
 const testimonials = [
-  { name: 'Priya Nair', role: 'PhD Student, MIT', text: 'Linx helped me find co-authors for my NLP research within days. The skill matching is incredibly accurate.' },
-  { name: 'James Okonkwo', role: 'Alumni, Google', text: 'I use Linx to post internship openings specifically for students with the right technical background.' },
-  { name: 'Sofia Reyes', role: 'Professor, Stanford', text: 'My lab found three talented undergrads through Linx. It\'s become essential for academic recruitment.' },
+  { name: 'Priya Nair', role: 'PhD Student, MIT', text: 'Lincxx helped me find co-authors for my NLP research within days. The skill matching is incredibly accurate.' },
+  { name: 'James Okonkwo', role: 'Alumni, Google', text: 'I use Lincxx to post internship openings specifically for students with the right technical background.' },
+  { name: 'Sofia Reyes', role: 'Professor, Stanford', text: 'My lab found three talented undergrads through Lincxx. It\'s become essential for academic recruitment.' },
 ];
 
 const Landing = () => {
@@ -104,7 +104,7 @@ const Landing = () => {
             </h1>
 
             <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
-              Linx bridges students, professors, and alumni through real-time collaboration, GitHub-powered skill matching, and exclusive academic opportunities.
+              Lincxx bridges students, professors, and alumni through real-time collaboration, GitHub-powered skill matching, and exclusive academic opportunities.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -138,7 +138,7 @@ const Landing = () => {
                 <div className="w-3 h-3 rounded-full bg-red-500" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                 <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="ml-2 text-xs text-gray-500">Linx Dashboard</span>
+                <span className="ml-2 text-xs text-gray-500">Lincxx Dashboard</span>
               </div>
               <div className="grid grid-cols-3 gap-3">
                 {['Python · NLP Research', 'TypeScript · WebDev', 'Rust · Systems'].map((text, i) => (
@@ -201,7 +201,7 @@ const Landing = () => {
               <span className="gradient-text">thrive academically</span>
             </h2>
             <p className="text-gray-400 max-w-xl mx-auto">
-              From real-time collaboration to career opportunities — Linx is your complete academic growth platform.
+              From real-time collaboration to career opportunities — Lincxx is your complete academic growth platform.
             </p>
           </div>
 
@@ -313,7 +313,7 @@ const Landing = () => {
                 onClick={() => openModal('register')}
                 className="px-10 py-4 rounded-2xl font-semibold text-white bg-gradient-to-r from-primary-600 to-secondary-600 shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 transition-all flex items-center gap-2 mx-auto"
               >
-                Join Linx Free <ArrowRight size={18} />
+                Join Lincxx Free <ArrowRight size={18} />
               </motion.button>
             </div>
           </motion.div>

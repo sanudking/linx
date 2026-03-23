@@ -80,10 +80,10 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
 
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-1">
-              <img src="/logo.png" alt="Linx Logo" className="h-7 w-auto" />
+              <img src="/logo.png" alt="Lincxx Logo" className="h-7 w-auto" />
             </div>
             <h2 className="text-2xl font-bold text-white mt-2">
-              {mode === 'login' ? 'Welcome back' : 'Join Linx'}
+              {mode === 'login' ? 'Welcome back' : 'Join Lincxx'}
             </h2>
             <p className="text-sm text-gray-400 mt-1">
               {mode === 'login' ? 'Sign in to your account' : 'Create your academic account'}

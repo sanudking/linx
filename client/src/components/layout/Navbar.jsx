@@ -36,7 +36,7 @@ const Navbar = ({ onLoginClick }) => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <img src="/logo.png" alt="Linx Logo" className="h-10 w-auto" />
+            <img src="/logo.png" alt="Lincxx Logo" className="h-10 w-auto" />
           </Link>
 
           {/* Desktop Links */}
@@ -132,7 +132,7 @@ const Navbar = ({ onLoginClick }) => {
                   onClick={() => onLoginClick?.('register')}
                   className="px-4 py-2 text-sm font-semibold text-white rounded-lg bg-gradient-to-r from-primary-600 to-secondary-600 hover:opacity-90 transition-all"
                 >
-                  Join Linx
+                  Join Lincxx
                 </button>
               </div>
             )}

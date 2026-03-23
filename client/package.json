@@ -1,7 +1,7 @@
 {
   "name": "linx-client",
   "version": "1.0.0",
-  "description": "Linx Academic Collaboration Platform - Frontend",
+  "description": "Lincxx Academic Collaboration Platform - Frontend",
   "type": "module",
   "scripts": {
     "dev": "vite",

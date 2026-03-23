@@ -23,12 +23,12 @@ const sendVerificationEmail = async (email, token) => {
 
   const transporter = createTransporter();
   await transporter.sendMail({
-    from: `"Linx Platform" <${process.env.EMAIL_USER}>`,
+    from: `"Lincxx Platform" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: 'Verify your Linx account',
+    subject: 'Verify your Lincxx account',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <h2 style="color: #4f46e5;">Welcome to Linx!</h2>
+        <h2 style="color: #4f46e5;">Welcome to Lincxx!</h2>
         <p>Thanks for signing up. Please verify your email address to get started.</p>
         <a href="${verifyUrl}" style="
           display: inline-block;
@@ -41,7 +41,7 @@ const sendVerificationEmail = async (email, token) => {
           margin: 20px 0;
         ">Verify Email</a>
         <p style="color: #666;">This link expires in 24 hours.</p>
-        <p style="color: #999; font-size: 12px;">If you did not create a Linx account, please ignore this email.</p>
+        <p style="color: #999; font-size: 12px;">If you did not create a Lincxx account, please ignore this email.</p>
       </div>
     `,
   });
@@ -52,13 +52,13 @@ const sendPasswordResetEmail = async (email, token) => {
 
   const transporter = createTransporter();
   await transporter.sendMail({
-    from: `"Linx Platform" <${process.env.EMAIL_USER}>`,
+    from: `"Lincxx Platform" <${process.env.EMAIL_USER}>`,
     to: email,
-    subject: 'Reset your Linx password',
+    subject: 'Reset your Lincxx password',
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #4f46e5;">Password Reset Request</h2>
-        <p>You requested a password reset for your Linx account.</p>
+        <p>You requested a password reset for your Lincxx account.</p>
         <a href="${resetUrl}" style="
           display: inline-block;
           background: linear-gradient(135deg, #4f46e5, #7c3aed);

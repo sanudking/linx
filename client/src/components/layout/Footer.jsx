@@ -9,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <img src="/logo.png" alt="Linx Logo" className="h-8 w-auto" />
+              <img src="/logo.png" alt="Lincxx Logo" className="h-8 w-auto" />
             </div>
             <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
               Where academic minds connect. Collaborate on research, find opportunities, and build the future together.
@@ -56,7 +56,7 @@ const Footer = () => {
 
         <div className="border-t border-white/5 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-500">
-            © {new Date().getFullYear()} Linx. All rights reserved.
+            © {new Date().getFullYear()} Lincxx. All rights reserved.
           </p>
           <p className="text-xs text-gray-600 flex items-center gap-1">
             Made with <Heart size={12} className="text-red-500" /> for the academic community

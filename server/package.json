@@ -1,7 +1,7 @@
 {
   "name": "linx-server",
   "version": "1.0.0",
-  "description": "Linx Academic Collaboration Platform - Backend",
+  "description": "Lincxx Academic Collaboration Platform - Backend",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

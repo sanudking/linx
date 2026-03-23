@@ -1,4 +1,4 @@
-# Linx — Local Development Setup
+# Lincxx — Local Development Setup
 
 ## Prerequisites
 
@@ -95,7 +95,7 @@ For higher GitHub API rate limits:
 ```bash
 # Health check
 curl http://localhost:5000/api/health
-# Expected: {"success":true,"message":"Linx API running",...}
+# Expected: {"success":true,"message":"Lincxx API running",...}
 ```
 
 ## Production Build

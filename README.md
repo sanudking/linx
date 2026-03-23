@@ -1,8 +1,8 @@
-# Linx — Real-time Academic Collaboration Platform
+# Lincxx — Real-time Academic Collaboration Platform
 
 > Where academic minds connect.
 
-Linx bridges students, professors, and alumni through real-time collaboration, GitHub-powered skill matching, and exclusive academic opportunities.
+Lincxx bridges students, professors, and alumni through real-time collaboration, GitHub-powered skill matching, and exclusive academic opportunities.
 
 ## ✨ Features
 

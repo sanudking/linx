@@ -67,7 +67,7 @@ const authLimiter = rateLimit({
 app.use('/api/auth/', authLimiter);
 
 app.get('/api/health', (req, res) => {
-  res.json({ success: true, message: 'Linx API running', timestamp: new Date() });
+  res.json({ success: true, message: 'Lincxx API running', timestamp: new Date() });
 });
 
 app.use('/api/auth', authRoutes);
@@ -86,7 +86,7 @@ setupSocketHandlers(io);
 
 const PORT = process.env.PORT || 5000;
 httpServer.listen(PORT, () => {
-  console.log(`Linx server running on port ${PORT}`);
+  console.log(`Lincxx server running on port ${PORT}`);
 });
 
 process.on('unhandledRejection', (err) => {
