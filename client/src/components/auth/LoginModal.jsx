@@ -80,10 +80,7 @@ const LoginModal = ({ isOpen, onClose, defaultMode = 'login' }) => {
 
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-1">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
-                <span className="text-white font-bold text-xs">L</span>
-              </div>
-              <span className="font-manrope font-bold text-lg gradient-text">Linx</span>
+              <img src="/logo.png" alt="Linx Logo" className="h-7 w-auto" />
             </div>
             <h2 className="text-2xl font-bold text-white mt-2">
               {mode === 'login' ? 'Welcome back' : 'Join Linx'}

@@ -9,10 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
-                <span className="text-white font-bold text-sm">L</span>
-              </div>
-              <span className="font-manrope font-bold text-xl gradient-text">Linx</span>
+              <img src="/logo.png" alt="Linx Logo" className="h-8 w-auto" />
             </div>
             <p className="text-sm text-gray-400 max-w-xs leading-relaxed">
               Where academic minds connect. Collaborate on research, find opportunities, and build the future together.
